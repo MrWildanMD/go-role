@@ -3,10 +3,11 @@ package repositories
 import (
 	"gorm.io/gorm"
 
-	"github.com/Permify/go-role/collections"
-	"github.com/Permify/go-role/models"
-	"github.com/Permify/go-role/models/pivot"
-	"github.com/Permify/go-role/repositories/scopes"
+	"github.com/MrWildanMD/go-role/collections"
+	"github.com/MrWildanMD/go-role/models"
+	"github.com/MrWildanMD/go-role/models/pivot"
+	"github.com/MrWildanMD/go-role/repositories/scopes"
+	"github.com/google/uuid"
 )
 
 // IPermissionRepository its data access layer abstraction of permission.
@@ -26,7 +27,7 @@ type IPermissionRepository interface {
 	// ID fetch options
 
 	GetPermissionIDs(pagination scopes.GormPager) (permissionIDs []uint, totalCount int64, err error)
-	GetDirectPermissionIDsOfUserByID(userID uint, pagination scopes.GormPager) (permissionIDs []uint, totalCount int64, err error)
+	GetDirectPermissionIDsOfUserByID(userID uuid.UUID, pagination scopes.GormPager) (permissionIDs []uint, totalCount int64, err error)
 	GetPermissionIDsOfRolesByIDs(roleIDs []uint, pagination scopes.GormPager) (permissionIDs []uint, totalCount int64, err error)
 
 	// FirstOrCreate & Updates & Delete
@@ -97,7 +98,7 @@ func (repository *PermissionRepository) GetPermissionIDs(pagination scopes.GormP
 // @param uint
 // @param repositories_scopes.GormPager
 // @return []uint, int64, error
-func (repository *PermissionRepository) GetDirectPermissionIDsOfUserByID(userID uint, pagination scopes.GormPager) (permissionIDs []uint, totalCount int64, err error) {
+func (repository *PermissionRepository) GetDirectPermissionIDsOfUserByID(userID uuid.UUID, pagination scopes.GormPager) (permissionIDs []uint, totalCount int64, err error) {
 	err = repository.Database.Table("user_permissions").Where("user_permissions.user_id = ?", userID).Count(&totalCount).Scopes(repository.paginate(pagination)).Pluck("user_permissions.permission_id", &permissionIDs).Error
 	return
 }

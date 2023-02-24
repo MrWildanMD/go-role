@@ -3,10 +3,10 @@ package repositories
 import (
 	"gorm.io/gorm"
 
-	"github.com/Permify/go-role/collections"
-	"github.com/Permify/go-role/models"
-	"github.com/Permify/go-role/models/pivot"
-	"github.com/Permify/go-role/repositories/scopes"
+	"github.com/MrWildanMD/go-role/collections"
+	"github.com/MrWildanMD/go-role/models"
+	"github.com/MrWildanMD/go-role/models/pivot"
+	"github.com/MrWildanMD/go-role/repositories/scopes"
 	"github.com/google/uuid"
 )
 

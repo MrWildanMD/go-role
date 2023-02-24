@@ -1,10 +1,9 @@
-
 <h1 align="center">
     <img src="https://raw.githubusercontent.com/Permify/permify/master/assets/permify-logo.svg" alt="Permify logo" width="336px" /><br />
 </h1>
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/Permify/go-role.svg)](https://pkg.go.dev/github.com/Permify/go-role)
-[![Go Report Card](https://goreportcard.com/badge/github.com/Permify/go-role)](https://goreportcard.com/report/github.com/Permify/go-role)
+[![Go Reference](https://pkg.go.dev/badge/github.com/MrWildanMD/go-role.svg)](https://pkg.go.dev/github.com/MrWildanMD/go-role)
+[![Go Report Card](https://goreportcard.com/badge/github.com/MrWildanMD/go-role)](https://goreportcard.com/report/github.com/MrWildanMD/go-role)
 ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/Permify/go-role)
 ![GitHub](https://img.shields.io/github/license/Permify/go-role)
 [![Twitter Follow](https://img.shields.io/twitter/follow/GetPermify?style=social)](https://twitter.com/GetPermify)
@@ -18,7 +17,7 @@ This package allows you to manage user permissions and roles in your database.
 Install
 
 ```shell
-go get github.com/Permify/go-role
+go get github.com/MrWildanMD/go-role
 ```
 
 Run All Tests
@@ -30,8 +29,8 @@ go test ./...
 Get the database driver for gorm that you will be using
 
 ```shell
-# mysql 
-go get gorm.io/driver/mysql 
+# mysql
+go get gorm.io/driver/mysql
 # or postgres
 go get gorm.io/driver/postgres
 # or sqlite
@@ -45,7 +44,7 @@ go get gorm.io/driver/clickhouse
 Import permify.
 
 ```go
-import permify `github.com/Permify/go-role`
+import permify `github.com/MrWildanMD/go-role`
 ```
 
 Initialize the new Permify.
@@ -165,7 +164,6 @@ can, err := permify.UserHasAllRoles(1, []string{"admin", "manager"})
 can, err := permify.UserHasAnyRoles(1, []string{"admin", "manager"})
 ```
 
-
 ## 🚘 Using permissions via roles
 
 ### Adding Role
@@ -230,7 +228,7 @@ roles, totalCount, err := permify.GetRolesOfUser(1, options.RoleOption{
     },
 })
 
-// the data returned is a collection of roles. 
+// the data returned is a collection of roles.
 // Collections provides a fluent convenient wrapper for working with arrays of data.
 fmt.Println(roles.IDs())
 fmt.Println(roles.Names())
@@ -286,7 +284,7 @@ permissions, totalCount, err := permify.GetPermissionsOfRoles([]string{"admin", 
     },
 })
 
-// the data returned is a collection of permissions. 
+// the data returned is a collection of permissions.
 // Collections provides a fluent convenient wrapper for working with arrays of data.
 fmt.Println(permissions.IDs())
 fmt.Println(permissions.Names())
@@ -352,7 +350,7 @@ Get User's All Permissions
 ```go
 permissions, err := permify.GetAllPermissionsOfUser(1)
 
-// the data returned is a collection of permissions. 
+// the data returned is a collection of permissions.
 // Collections provides a fluent convenient wrapper for working with arrays of data.
 fmt.Println(permissions.IDs())
 fmt.Println(permissions.Names())
@@ -386,7 +384,7 @@ You can create the relationships between the user and the role and permissions i
 ```go
 import (
     "gorm.io/gorm"
-    models `github.com/Permify/go-role/models`
+    models `github.com/MrWildanMD/go-role/models`
 )
 
 type User struct {
@@ -417,14 +415,12 @@ if errors.Is(err, gorm.ErrRecordNotFound) {
 
 [Errors List](https://github.com/go-gorm/gorm/blob/master/errors.go)
 
+## Stargazers
 
-Stargazers
------------
-
-[![Stargazers repo roster for @Permify/go-role](https://reporoster.com/stars/Permify/go-role)](https://github.com/Permify/go-role/stargazers)
-
+[![Stargazers repo roster for @Permify/go-role](https://reporoster.com/stars/Permify/go-role)](https://github.com/MrWildanMD/go-role/stargazers)
 
 ## Community & Support
+
 Join our [Discord channel](https://discord.gg/MJbUjwskdH) for issues, feature requests, feedbacks or anything else. We love to talk about authorization and access control :heart:
 
 <p align="left">
@@ -438,5 +434,3 @@ Join our [Discord channel](https://discord.gg/MJbUjwskdH) for issues, feature re
   <img height="70px" width="70px" alt="permify | Linkedin" src="https://user-images.githubusercontent.com/39353278/187209321-03293a24-6f63-4321-b362-b0fc89fdd879.png" />
 </a>
 </p>
-
-

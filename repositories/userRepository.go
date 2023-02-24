@@ -4,9 +4,9 @@ import (
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 
-	"github.com/Permify/go-role/collections"
-	"github.com/Permify/go-role/models"
-	"github.com/Permify/go-role/models/pivot"
+	"github.com/MrWildanMD/go-role/collections"
+	"github.com/MrWildanMD/go-role/models"
+	"github.com/MrWildanMD/go-role/models/pivot"
 	"github.com/google/uuid"
 )
 

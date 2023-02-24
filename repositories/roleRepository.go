@@ -7,6 +7,7 @@ import (
 	"github.com/Permify/go-role/models"
 	"github.com/Permify/go-role/models/pivot"
 	"github.com/Permify/go-role/repositories/scopes"
+	"github.com/google/uuid"
 )
 
 // IRoleRepository its data access layer abstraction of role.
@@ -32,7 +33,7 @@ type IRoleRepository interface {
 	// ID fetch options
 
 	GetRoleIDs(pagination scopes.GormPager) (roleIDs []uint, totalCount int64, err error)
-	GetRoleIDsOfUser(userID uint, pagination scopes.GormPager) (roleIDs []uint, totalCount int64, err error)
+	GetRoleIDsOfUser(userID uuid.UUID, pagination scopes.GormPager) (roleIDs []uint, totalCount int64, err error)
 	GetRoleIDsOfPermission(permissionID uint, pagination scopes.GormPager) (roleIDs []uint, totalCount int64, err error)
 
 	// FirstOrCreate & Updates & Delete
@@ -150,7 +151,7 @@ func (repository *RoleRepository) GetRoleIDs(pagination scopes.GormPager) (roleI
 // @param uint
 // @param repositories_scopes.GormPager
 // @return []uint, int64, error
-func (repository *RoleRepository) GetRoleIDsOfUser(userID uint, pagination scopes.GormPager) (roleIDs []uint, totalCount int64, err error) {
+func (repository *RoleRepository) GetRoleIDsOfUser(userID uuid.UUID, pagination scopes.GormPager) (roleIDs []uint, totalCount int64, err error) {
 	err = repository.Database.Table("user_roles").Where("user_roles.user_id = ?", userID).Count(&totalCount).Scopes(repository.paginate(pagination)).Pluck("user_roles.role_id", &roleIDs).Error
 	return
 }
